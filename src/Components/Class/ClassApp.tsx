@@ -2,48 +2,44 @@ import { Component } from "react";
 import { ClassScoreBoard } from "./ClassScoreBoard";
 import { ClassGameBoard } from "./ClassGameBoard";
 import { ClassFinalScore } from "./ClassFinalScore";
-
-import { initialFishes } from "../../types";
-
-const answersLeft = initialFishes.map((fishName) => fishName.name);
+import { initialFishes } from "../../constants/data";
 export class ClassApp extends Component {
   state = {
-    index: 0,
     correctCount: 0,
     incorrectCount: 0,
   };
+
   handleAnswer: (name: string) => void = (name: string) => {
-    const { index, correctCount, incorrectCount } = this.state;
-    initialFishes[index].name === name
+    const { correctCount, incorrectCount } = this.state;
+    initialFishes[correctCount + incorrectCount].name === name
       ? this.setState({ correctCount: correctCount + 1 })
       : this.setState({ incorrectCount: incorrectCount + 1 });
-    this.setState({ index: index + 1 });
+    this.setState({ incorrectCount: incorrectCount  + 1 });
   };
-  render() {
-    const { index, correctCount, incorrectCount } = this.state;
 
-    const totalCountInfo = correctCount + incorrectCount;
+  render() {
+    const { correctCount, incorrectCount } = this.state;
+
+    const fishIndex = correctCount + incorrectCount;
+    const isGameOver = fishIndex === initialFishes.length;
+    const answersLeft = initialFishes.map((fishName) => fishName.name);
 
     return (
       <>
-        {totalCountInfo < 4 ? (
+        {!isGameOver? (
           <>
             <ClassScoreBoard
-              index={index}
               incorrectCount={incorrectCount}
               correctCount={correctCount}
               answersLeft={answersLeft}
             />
             <ClassGameBoard
-              fishData={initialFishes[index]}
+              fishData={initialFishes[fishIndex]}
               handleAnswer={this.handleAnswer}
             />
           </>
         ) : (
-          <ClassFinalScore
-            correctCount={correctCount}
-            totalCount={totalCountInfo}
-          />
+          <ClassFinalScore correctCount={correctCount} totalCount={fishIndex} />
         )}
       </>
     );

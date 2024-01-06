@@ -1,24 +1,3 @@
-import { Images } from "./assets/Images";
-
-export const initialFishes = [
-  {
-    name: "trout",
-    url: Images.trout,
-  },
-  {
-    name: "salmon",
-    url: Images.salmon,
-  },
-  {
-    name: "tuna",
-    url: Images.tuna,
-  },
-  {
-    name: "shark",
-    url: Images.shark,
-  },
-];
-
 export type TSFishData = {
   name: string,
   url: string
@@ -32,9 +11,9 @@ export type TSGameInfo = {
 
 export type ClassAppData={
   fishName: string;
-correctCount: number;
-incorrectCount: number;
-index: number;
+  correctCount: number;
+  incorrectCount: number;
+  index: number;
 }
 
 export type ClassAppState = {
@@ -52,6 +31,5 @@ export type TSFinalScore = {
 export type TSScoreBoard = {
   incorrectCount: number;
   correctCount: number;
-  index:number;
   answersLeft: string[];
 };

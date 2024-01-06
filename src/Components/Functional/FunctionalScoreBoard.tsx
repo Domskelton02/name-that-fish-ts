@@ -6,19 +6,13 @@ import "./styles/score-board.css";
 export function FunctionalScoreBoard({
   incorrectCount,
   correctCount,
-  index,
   answersLeft,
 }: TSScoreBoard) {
-  const remainingFishAnswers = answersLeft.slice(
-    answersLeft.indexOf(answersLeft[index]),
-    4
-  );
-
   return (
     <div id="score-board">
       <div>Incorrect 🔻: {incorrectCount}</div>
       <div id="choices-left">
-        {remainingFishAnswers.map((answer) => (
+        {answersLeft.map((answer) => (
           <div key={answer} className="choice">
             {answer}
           </div>

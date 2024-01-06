@@ -4,19 +4,13 @@ import { TSScoreBoard } from "../../types";
 
 export class ClassScoreBoard extends Component<TSScoreBoard> {
   render() {
-    const { incorrectCount, correctCount, index } = this.props;
-    const { answersLeft } = this.props;
-
-    const remainingFishAnswers = answersLeft.slice(
-      answersLeft.indexOf(answersLeft[index]),
-      4
-    );
+    const { incorrectCount, correctCount, answersLeft } = this.props;
 
     return (
       <div id="score-board">
         <div>Incorrect 🔻: {incorrectCount}</div>
         <div id="choices-left">
-          {remainingFishAnswers.map((answer) => (
+          {answersLeft.map((answer) => (
             <div key={answer} className="choice">
               {answer}
             </div>

@@ -1,6 +1,5 @@
-import { Component, FormEvent,ChangeEvent } from "react";
+import { Component, FormEvent } from "react";
 import "./styles/game-board.css";
-
 import { TSGameInfo } from "../../types";
 
 export class ClassGameBoard extends Component<TSGameInfo> {
@@ -10,23 +9,13 @@ export class ClassGameBoard extends Component<TSGameInfo> {
 
   handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { inputFishName } = this.state;
-
-    const { handleAnswer } = this.props;
-    handleAnswer(inputFishName.toLowerCase());
-
+    this.props.handleAnswer(this.state.inputFishName.toLowerCase());
     this.setState({ inputFishName: "" });
   };
-
- handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-  
-    this.setState({inputFishName:e.target.value});
-  };
   render() {
-const {fishData}=this.props;
-const {inputFishName}=this.state;
+    const { fishData } = this.props;
+    const { inputFishName } = this.state;
    
-
     return (
       <div id="game-board">
         <div id="fish-container">
@@ -38,12 +27,9 @@ const {inputFishName}=this.state;
             type="text"
             name="fish-guess"
             value={inputFishName}
-            onChange={this.handleChange}
+            onChange={(e) => this.setState({ initialFishes: e.target.value })}
           />
-          <input
-            type="submit"
-    
-          />
+          <input type="submit" />
         </form>
       </div>
     );
