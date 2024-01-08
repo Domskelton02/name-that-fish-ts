@@ -14,7 +14,6 @@ export class ClassApp extends Component {
     initialFishes[correctCount + incorrectCount].name === name
       ? this.setState({ correctCount: correctCount + 1 })
       : this.setState({ incorrectCount: incorrectCount + 1 });
-    this.setState({ incorrectCount: incorrectCount  + 1 });
   };
 
   render() {
@@ -22,7 +21,7 @@ export class ClassApp extends Component {
 
     const fishIndex = correctCount + incorrectCount;
     const isGameOver = fishIndex === initialFishes.length;
-    const answersLeft = initialFishes.map((fishName) => fishName.name);
+    const answersLeft = initialFishes.map((fishName) => fishName.name).slice(fishIndex);
 
     return (
       <>

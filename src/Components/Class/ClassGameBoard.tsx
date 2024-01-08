@@ -27,7 +27,7 @@ export class ClassGameBoard extends Component<TSGameInfo> {
             type="text"
             name="fish-guess"
             value={inputFishName}
-            onChange={(e) => this.setState({ initialFishes: e.target.value })}
+            onChange={(e) => this.setState({ inputFishName: e.target.value })}
           />
           <input type="submit" />
         </form>

@@ -9,21 +9,6 @@ export type TSGameInfo = {
  
 };
 
-export type ClassAppData={
-  fishName: string;
-  correctCount: number;
-  incorrectCount: number;
-  index: number;
-}
-
-export type ClassAppState = {
-  gameInformation: ClassAppData| null;
-};
-
-export type TSClassGameInfo={
-  getGameInformation : (getGameInformation:ClassAppData|null)=>void;
-}
-
 export type TSFinalScore = {
   totalCount: number;
   correctCount: number;
