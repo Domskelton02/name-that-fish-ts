@@ -10,12 +10,11 @@ export function FunctionalApp() {
 
   const fishIndex = correctCount + incorrectCount;
   const answersLeft = initialFishes
-  .map((fishName) => fishName.name)
-  .slice(fishIndex);
+    .map((fishName) => fishName.name)
+    .slice(fishIndex);
   const isGameOver = fishIndex === initialFishes.length;
 
-  
-  const handleAnswer: (name: string) => void = (name: string) => {
+  const handleAnswer = (name: string) => {
     initialFishes[fishIndex].name === name
       ? setCorrectCount(correctCount + 1)
       : setIncorrectCount(incorrectCount + 1);
